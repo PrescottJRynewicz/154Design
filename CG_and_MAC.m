@@ -1,24 +1,12 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% UCLA MAE154A :Aerospace Senior Design
+% Code Developed by Jordan Robertson for Aircraft Center of Gravity Calculations
+% Februrary, 2017
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+close all; clear all; clc;
 
-%%% Overall Aircraft Parameters 
 
-MTOW=93000;                             % Max Take-Off Weight [lb]
-PL=90;                                  % Plane Length [ft]
-WL=90;                                  % Wing Loading [lb/ft^2]
-w_fuel=35214;                           % total fuel weight
-
-% Distances are measured from the nose of the aircraft
-% to the leading edge (LE) of the component
-% units=[ft]
-L_nose=17.93;                           % length of nose
-L_fusel=42.17;                          % length of fuselage
-L_emp=29.9;                             % length of tail empennage
-L_t_vert_root=                          % length of vertical tail surface root chord
-L_t_horiz_root=L_t_vert_root;           % length of horizontal tail surface root chord
-L_eng=13;                               % length of engine
-L_nac=14;                               % length of nacelle
-L_seat1=10;                             % length of seating section 1 (4 people)
-L_seat2=10;                             % length of seating section 2 (4 people)
-L_seat3=10;                             % length of seating section 3 (4 people)
+%% Inputs Parameters
 
 x_wing=                                 % wing LE placement
 x_eng=                                  % engine LE placement
@@ -41,8 +29,30 @@ x_seat3=                                % placement of seating section 3 LE (4 p
                                             % 10 ft long- section 1 CG must be at least 5ft into the
                                             % fuselage and section 3 must be at
                                             % least 5 feet from the end of the fuselage
+                                            
+%% Overall Aircraft Parameters 
+
+MTOW=93000;                             % Max Take-Off Weight [lb]
+PL=90;                                  % Plane Length [ft]
+WL=90;                                  % Wing Loading [lb/ft^2]
+w_fuel=35214;                           % total fuel weight
+
+% Distances are measured from the nose of the aircraft
+% to the leading edge (LE) of the component
+% units=[ft]
+L_nose=17.93;                           % length of nose
+L_fusel=42.17;                          % length of fuselage
+L_emp=29.9;                             % length of tail empennage
+L_t_vert_root=                          % length of vertical tail surface root chord
+L_t_horiz_root=L_t_vert_root;           % length of horizontal tail surface root chord
+L_eng=13;                               % length of engine
+L_nac=14;                               % length of nacelle
+L_seat1=10;                             % length of seating section 1 (4 people)
+L_seat2=10;                             % length of seating section 2 (4 people)
+L_seat3=10;                             % length of seating section 3 (4 people)
+
                                          
-% Weight Parameters
+%% Weight Parameters
 % Units are in [lb]
 w_1eng=2445;                            % weight of an indivual engine
 num_eng=2;                              % number of engines
@@ -64,7 +74,7 @@ w_js=30;                                % weight of jump seat
 w_pilotseat=40;                         % weight of pilot seat
 w_psngr=200;                            % weight of passenger and their on-hand items
 
-%%% Wing and Surface Controls Group Parameters
+%% Wing and Surface Controls Group Parameters
 
 S=MTOW/WL;                              % Wing Area [ft^2]
 AR=7.2015;                              % Aspect Ration
@@ -78,7 +88,7 @@ x_sc=x_MAC+MAC;                         % surface controls CG placement
 m_wing=x_wing_cg*w_wing;
 m_sc=x_sc*w_sc;
 
-%%% Fuel Tank Parameters 
+%% Fuel Tank Parameters 
 
 w_centfuel=.7*10.18*Cr*fuelden;         % weight of fuel in center fuel tank 
                                         % 10.18=cross section surface area of cargo hold
@@ -90,38 +100,38 @@ x_wingfuel_cg=(x_wing+.5)+(.7*.4*Cr);   % modeled as a mini-wing inside of main 
 m_centfuel=x_centfuel_cg*w_centfuel;
 m_wingfuel=x_wingfuel_cg*w_wingfuel;
                                         
-%%% Engine Group Parameters
+%% Engine Group Parameters
 
 x_eng_cg=x_eng+(L_eng/2);
 
 m_engs=x_eng_cg*w_engs;
 
-%%% Nacelle Group Parameters
+%% Nacelle Group Parameters
 
 x_nac_cg=x_nac+(.4*L_nac);
 
 m_nac=x_nac_cg*w_nac;
 
-%%% Tail Group Parameters
+%% Tail Group Parameters
 
 x_vert_cg=x_t_vert+(.42*L_t_vert_root);
 x_horiz_cg=x_t_horiz+(.42*L_t_horiz_root);
 
 m_tail=x_horiz_cg*w_tail; 
 
-%%% Fuselage Group Parameters
+%% Fuselage Group Parameters
 
 x_fusel_cg=x_fusel+(.47*L_fusel);
 
 m_fusel=w_fusel*x_fusel_cg;
 
-%%% Landing Gear Parameters
+%% Landing Gear Parameters
 
 x_lg_cg=x_lg_front+(((2/3)*x_lg_rear*w_lg)/w_lg);
 
 m_lg=w_lg*x_lg_cg;
 
-%%% Payload+Pilot Parameters
+%% Payload+Pilot Parameters
 
 x_seat1_cg=x_seat1+(L_seat1/2);
 x_seat2_cg=x_seat2+(L_seat2/2);
@@ -139,18 +149,18 @@ m_seat1=x_seat1_cg*w_seat1;
 m_seat2=x_seat2_cg*w_seat2;
 m_seat3=x_seat3_cg*w_seat3;
 
-%%% Sum Moments
+%% Sum Moments
 
-sum_m=m_js+m_cp+m_seat1+m_seat2+m_seat3+m_lg+m_fusel+m_tail+m_nac+m_engs+m_wingfuel+m_centfuel+m_wing_m_sc;
+sum_m=m_js+m_cp+m_seat1+m_seat2+m_seat3+m_lg+m_fusel+m_tail+m_nac+m_engs+m_wingfuel+m_centfuel+m_wing+m_sc;
 
-%%% Sum Weights
+%% Sum Weights
 
 sum_w=w_seat1+w_seat2+w_seat3+w_pilots+w_js_total+w_fuel+w_engs+w_wing+w_tail+w_fusel+w_sc+w_nac+w_lg;
 
-%%% CG Calculation
+%% CG Calculation
 
-CG=sum_n/sum_w
+CG=sum_m/sum_w;
 
-%%% Percent MAC Calculation
+%% Percent MAC Calculation
 
-Percent_MAC=(CG-x_MAC)/MAC
+Percent_MAC=(CG-x_MAC)/MAC;
