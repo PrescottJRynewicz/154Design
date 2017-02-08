@@ -23,7 +23,6 @@ NacelleGroup = 0.0143*MTOW;
 AirframeStructure = WingGroup + TailGroup + FuselageGroup + LandingGear + SurfaceControlsGroup + NacelleGroup;
 
 % propulsion group includes: engines
-
 PropulsionSystem = 2*2445;                                  % [lbs] there are 2 engines, each weighing in at 2445 lbs
 
 %% Define and Calculate Parameters
