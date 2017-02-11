@@ -1,10 +1,14 @@
 
 %%% Overall Aircraft Parameters 
 
-MTOW=93000;                             % Max Take-Off Weight [lb]
+MTOW=118000;                            % Max Take-Off Weight [lb]
 PL=90;                                  % Plane Length [ft]
 WL=90;                                  % Wing Loading [lb/ft^2]
-w_fuel=35214;                           % total fuel weight
+w_fuel=70862;                           % total fuel weight
+                                        % Using Max Available fuel weight
+                                        % here: This is not the total
+                                        % weight required for range calcs. 
+                                        
 
 % Distances are measured from the nose of the aircraft
 % to the leading edge (LE) of the component
@@ -42,7 +46,8 @@ x_seat3=                                % placement of seating section 3 LE (4 p
                                             % fuselage and section 3 must be at
                                             % least 5 feet from the end of the fuselage
                                          
-% Weight Parameters
+% Weight Parameters: As found in Torenbeek estimates from similar aircraft
+% Assumed using Aerospace Caravelle weight ratios.
 % Units are in [lb]
 w_1eng=2445;                            % weight of an indivual engine
 num_eng=2;                              % number of engines
@@ -52,12 +57,12 @@ fuelden=49.943;                         % fuel density of jet fuel [lb/ft^3]
 fuelvol=w_fuel/fuelden;                 % volume of fuel tanks needed
                                         % See below wing group info for
                                         % fuel tank weights
-w_wing=.103*MTOW;                       % weight of wing group
-w_tail=.0287*MTOW;                      % weight of tail group
-w_fusel=.122*MTOW;                      % weight of fuselage
-w_sc=.0138*MTOW;                        % weight of surface controls
-w_nac=.0155*MTOW;                       % weight of nacelle
-w_lg=.04*MTOW;                          % weight of landing gear
+w_wing=.134*MTOW;                       % weight of wing group
+w_tail=.0178*MTOW;                      % weight of tail group
+w_fusel=.105*MTOW;                      % weight of fuselage
+w_sc=.0187*MTOW;                        % weight of surface controls
+w_nac=.0144*MTOW;                       % weight of nacelle
+w_lg=.0465*MTOW;                          % weight of landing gear
 
 w_psngrseat=45;                         % weight of luxury passenger seat
 w_js=30;                                % weight of jump seat 
@@ -149,8 +154,8 @@ sum_w=w_seat1+w_seat2+w_seat3+w_pilots+w_js_total+w_fuel+w_engs+w_wing+w_tail+w_
 
 %%% CG Calculation
 
-CG=sum_m/sum_w
+CG=sum_m/sum_w;
 
 %%% Percent MAC Calculation
 
-Percent_MAC=(CG-x_MAC)/MAC
+Percent_MAC=(CG-x_MAC)/MAC;
