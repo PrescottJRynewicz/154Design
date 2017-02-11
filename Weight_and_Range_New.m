@@ -2,7 +2,7 @@ clc; clear all; close all;
 
 %% Define Maximum Gross Takeoff Weight
 
-MTOW = 118500;
+MTOW = 118000;
 
 %% Calculate Group Weights
 
@@ -23,6 +23,7 @@ NacelleGroup = 0.0143*MTOW;
 AirframeStructure = WingGroup + TailGroup + FuselageGroup + LandingGear + SurfaceControlsGroup + NacelleGroup;
 
 % propulsion group includes: engines
+
 PropulsionSystem = 2*2445;                                  % [lbs] there are 2 engines, each weighing in at 2445 lbs
 
 %% Define and Calculate Parameters
@@ -44,15 +45,11 @@ V = M*a;                                                    % [nmi/hr] aircraft 
 Range = 4500;                                               % [nmi] specified range
 Ctsfc = 0.8766;                                             % [1/hr] thrust specific fuel consumption based off of BJ205 at 45000 ft and Mach 1.6
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% Load Condition 1 - Max Payload & Max Fuel
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 Waircraft1 = MTOW;                                          % [lbs]
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% Load Condition 2 - Max Payload & Min Fuel
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % FAA Regulations state that an aircraft must maintain a minumum 45 minute
 % fuel reserve, so use the endurance equation to calculate how many lbs of
@@ -62,24 +59,20 @@ E = 0.75;                                                   % [hr]
 Wfuel45min = MTOW - (MTOW/(exp(E/((1/Ctsfc)*(CL_CD)))));    % [lbs]
 Waircraft2 = Wempty + Wfuel45min + Payload;                 % [lbs]
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% Load Condition 3 - Min Payload & Max Fuel
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % Min payload can be assumed to be 0 since the 2 pilots are included in the
 % dry weight of the aircraft
 
 Waircraft3 = MTOW - Payload;
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% Load Condition 4 - Min Payload & Min Fuel
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 Waircraft4 = Wempty + Wfuel45min;                           % [lbs]
 
 %% Calculate weight of fuel needed to satisfy range
 
-W0 = 112000;                                                % [lbs] MTOW
+W0 = MTOW;                                                  % [lbs] MTOW
 R = 4500;                                                   % [nmi] range
 a0 = 661.47;                                                % [nmi/hr] speed of sound @ sea level
 M = 1.6;                                                    % [unitless] mach number
@@ -102,5 +95,5 @@ if x < 0
     x = abs(x);
     disp(['We are over weight limits for fuel by ' num2str(x)])
 else
-    disp(['We requirements met: ' num2str(x) ' pounds under weight'])
+    disp(['We are under weight limits for fuel by ' num2str(x)])
 end
