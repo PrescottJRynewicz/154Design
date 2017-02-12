@@ -3,30 +3,36 @@
 % Stability and Control Cm_alpha Calcs
 % Developed by Quang, February 2017
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-close all; clear all; clc;
+% close all; clear all; clc;
 
+%% Febraury 11 : Updates, Prescott
+% Added all values from initial CG estimates, given values in appendix B. 
+% Assumed M = 0.8. 
+% Made many assumptions stated in comments. 
+% Initial values all look good with negative CM_cg slope and 17% stability
+% margin. 
+
+%% Calculations
 %Define the constants
-a_cruise        = 573.4;                    %Speed of sound at cruise alt. Nmi/hr
-a_w             = 6;                        %3D Lift slope of wing (equal to CL_alpha_w) : a_w = a_t = 6 @ Mach 0.8
-a_t             = a_w;                      %3D Lift slope of tail (equal to CL_alpha_w)
-alpha_w_deg     = [2.96 3.94 4.91];            %angle of attack of wing in degree
-alpha_w         = alpha_w_deg.*pi/180;     %angle of attack of wing
-alpha_t         = alpha_w;                 %angle of attack of tail
+a_cruise        = 573.4;                    %Speed of sound at cruise alt. Nmi/hr                      %3D Lift slope of tail (equal to CL_alpha_w)
+alpha_w_deg     = [2.96 3.94 4.91];         %angle of attack of wing in degree
+alpha_w         = alpha_w_deg.*pi/180;      %angle of attack of wing
+alpha_t         = alpha_w;                  %angle of attack of tail
 tau             = 0;                        %correction of coefficient
 k1_f            = .0591;                    %initial fineness ration of fuselage
 k2_f            = .8943;                    %final fineness ratio of fuselage
 k1_n            = .0985;                    %initial fineness ration of nacelle
 k2_n            = .8354;                    %final fineness ratio of nacelle
-CL_w            = [0.3 0.4 0.5];                      % Assume CL_0 to be small. 
-CL_t            = [0.3 0.4 0.5];                      %Lift coefficient of tail
+CL_w            = [0.3 0.4 0.5];            % Assume CL_0 to be small. 
+CL_t            = [0.3 0.4 0.5];            %Lift coefficient of tail
 a_w             = CL_w./alpha_w;
 a_t             = a_w;
 x_cp            = 45;
-CM_ac           = .015;                        %Moment coefficient of aerodynamic center
-                                                % Assume zero initially b/c
-                                                % x_cp = x_ac
-                                                % Typically between
-                                                % .008-.025 [150B Text, pg. 254]
+CM_ac           = 0;                        %Moment coefficient of aerodynamic center
+                                            % Assume zero initially b/c
+                                            % x_cp = x_ac. 
+                                            % Typically between
+                                            % .008-.025 [150B Text, pg. 254]
 b               = 97.16;                    %wing span
 c_w             = 14.36;                    %mean aerodynamic chord of wing
 c_t             = 1.89;                     %chord of horizontal tail

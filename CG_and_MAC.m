@@ -4,7 +4,16 @@
 % Percent Cg_MAC Code
 % Febraury 10, 2017
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-close all; clear all; clc;
+% close all; clear all; clc;
+
+
+%% Febraury 11, Prescott Update
+% All Code updated with curret MTOW. 2 Engines still. 
+% Estimates taken from similar aircraft for initial calcs. 
+% %MAC_Cg looks good, cg stays constant through 4 loading conditions. 
+% Need to potentially make adjustments and run number for supersonic case. 
+
+%%
 
 %%% Overall Aircraft Parameters 
 
@@ -165,7 +174,7 @@ CG              = sum_m./sum_w;
 %%% Percent MAC Calculation
 
 Percent_MAC     = (CG-x_MAC)./MAC;
-disp(CG);
+
 
 % 
 % plot(x_wing,Percent_MAC);
