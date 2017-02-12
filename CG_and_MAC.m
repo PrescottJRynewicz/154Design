@@ -4,7 +4,7 @@
 % Percent Cg_MAC Code
 % Febraury 10, 2017
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% close all; clear all; clc;
+close all; clear all; clc;
 
 
 %% Febraury 11, Prescott Update
@@ -53,9 +53,9 @@ x_seat_js       = .2*PL;                          % placement of jump seat CG (1
                                                     % cockpit seating should go around the end of the nose-
                                                     % fuselage just counts cabin in this code so you can put
                                                     % cockpit forward of that; jump seat can go in cabin or cockpit
-x_seat1         = 0.1*PL;                           % placement of seating section 1 LE (4 people)
-x_seat2         = 0.2*PL;                          % placement of seating section 2 LE (4 people)
-x_seat3         = 0.3*PL;                          % placement of seating section 3 LE (4 people)
+x_seat1         = 0.3*PL;                           % placement of seating section 1 LE (4 people)
+x_seat2         = 0.4*PL;                          % placement of seating section 2 LE (4 people)
+x_seat3         = 0.5*PL;                          % placement of seating section 3 LE (4 people)
                                                     % seating sections 1-3 are each approx
                                                     % 10 ft long- section 1 CG must be at least 5ft into the
                                                     % fuselage and section 3 must be at
