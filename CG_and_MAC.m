@@ -77,91 +77,91 @@ w_psngr         =200;                               % weight of passenger and th
 
 %%% Wing and Surface Controls Group Parameters
 
-S               =MTOW/WL;                           % Wing Area [ft^2]
-AR              =7.2015;                            % Aspect Ration
-Cr              =sqrt(AR*S)/5;                      % root chord length [ft]
-Ct              =0.3886*Cr;                         % tip chord length [ft]
-MAC             =.73917*Cr;
-x_MAC           =x_wing+((1-.8037)*Cr);             % placement of LE of MAC
-x_wing_cg       =x_wing+(.7*Cr);                    % placement of wing CG on aircraft
-x_sc            =x_MAC+MAC;                         % surface controls CG placement
+S               = MTOW/WL;                           % Wing Area [ft^2]
+AR              = 7.2015;                            % Aspect Ration
+Cr              = sqrt(AR*S)/5;                      % root chord length [ft]
+Ct              = 0.3886*Cr;                         % tip chord length [ft]
+MAC             = .73917*Cr;    
+x_MAC           = x_wing+((1-.8037)*Cr);             % placement of LE of MAC
+x_wing_cg       = x_wing+(.7*Cr);                    % placement of wing CG on aircraft
+x_sc            = x_MAC+MAC;                         % surface controls CG placement
 
-m_wing          =x_wing_cg*w_wing;
-m_sc            =x_sc*w_sc;
+m_wing          = x_wing_cg*w_wing;
+m_sc            = x_sc*w_sc;
 
 %%% Fuel Tank Parameters 
 
-w_centfuel      =.7*10.18*Cr*fuelden;               % weight of fuel in center fuel tank 
+w_centfuel      = .7*10.18*Cr*fuelden;               % weight of fuel in center fuel tank 
                                                     % 10.18=cross section surface area of cargo hold
                                                     % .7=percentage estimation of available volume
-w_wingfuel      =w_fuel-w_centfuel;                 % total weight of fuel in both wings
-x_centfuel_cg   =x_wing+(Cr/2);                     % position of CG for center fuel tank
-x_wingfuel_cg   =(x_wing+.5)+(.7*.4*Cr);            % modeled as a mini-wing inside of main wing 
+w_wingfuel      = w_fuel-w_centfuel;                 % total weight of fuel in both wings
+x_centfuel_cg   = x_wing+(Cr/2);                     % position of CG for center fuel tank
+x_wingfuel_cg   = (x_wing+.5)+(.7*.4*Cr);            % modeled as a mini-wing inside of main wing 
                                                     % offset back by 6in and with length of .4*Cr
-m_centfuel      =x_centfuel_cg*w_centfuel;
-m_wingfuel      =x_wingfuel_cg*w_wingfuel;
-                                        
+m_centfuel      = x_centfuel_cg*w_centfuel;
+m_wingfuel      = x_wingfuel_cg*w_wingfuel;
+                                         
 %%% Engine Group Parameters
 
-x_eng_cg        =x_eng+(L_eng/2);
+x_eng_cg        = x_eng+(L_eng/2);
 
-m_engs          =x_eng_cg*w_engs;
+m_engs          = x_eng_cg*w_engs;
 
 %%% Nacelle Group Parameters
 
-x_nac_cg        =x_nac+(.4*L_nac);
+x_nac_cg        = x_nac+(.4*L_nac);
 
-m_nac           =x_nac_cg*w_nac;
+m_nac           = x_nac_cg*w_nac;
 
 %%% Tail Group Parameters
 
-x_vert_cg       =x_t_vert+(.42*L_t_vert_root);
-x_horiz_cg      =x_t_horiz+(.42*L_t_horiz_root);
+x_vert_cg       = x_t_vert+(.42*L_t_vert_root);
+x_horiz_cg      = x_t_horiz+(.42*L_t_horiz_root);
 
-m_tail          =x_horiz_cg*w_tail; 
+m_tail          = x_horiz_cg*w_tail; 
 
 %%% Fuselage Group Parameters
 
-x_fusel_cg      =x_fusel+(.47*L_fusel);
+x_fusel_cg      = x_fusel+(.47*L_fusel);
 
-m_fusel         =w_fusel*x_fusel_cg;
-
+m_fusel         = w_fusel*x_fusel_cg;
+ 
 %%% Landing Gear Parameters
 
-x_lg_cg         =x_lg_front+(((2/3)*x_lg_rear*w_lg)/w_lg);
+x_lg_cg         = x_lg_front+(((2/3)*x_lg_rear*w_lg)/w_lg);
 
-m_lg            =w_lg*x_lg_cg;
+m_lg            = w_lg*x_lg_cg;
 
 %%% Payload+Pilot Parameters
 
-x_seat1_cg      =x_seat1+(L_seat1/2);
-x_seat2_cg      =x_seat2+(L_seat2/2);
-x_seat3_cg      =x_seat3+(L_seat3/2);
+x_seat1_cg      = x_seat1+(L_seat1/2);
+x_seat2_cg      = x_seat2+(L_seat2/2);
+x_seat3_cg      = x_seat3+(L_seat3/2);
 
-w_seat1         =(4*w_psngrseat)+(4*w_psngr);
-w_seat2         =(4*w_psngrseat)+(4*w_psngr);
-w_seat3         =(4*w_psngrseat)+(4*w_psngr);
-w_pilots        =(2*w_pilotseat)+(2*w_psngr);
-w_js_total      =w_js+w_psngr;
+w_seat1         = (4*w_psngrseat)+(4*w_psngr);
+w_seat2         = (4*w_psngrseat)+(4*w_psngr);
+w_seat3         = (4*w_psngrseat)+(4*w_psngr);
+w_pilots        = (2*w_pilotseat)+(2*w_psngr);
+w_js_total      = w_js+w_psngr;
 
-m_js            =w_js_total*x_seat_js;
-m_cp            =x_seat_cp*w_pilots;
-m_seat1         =x_seat1_cg*w_seat1;
-m_seat2         =x_seat2_cg*w_seat2;
-m_seat3         =x_seat3_cg*w_seat3;
+m_js            = w_js_total*x_seat_js;
+m_cp            = x_seat_cp*w_pilots;
+m_seat1         = x_seat1_cg*w_seat1;
+m_seat2         = x_seat2_cg*w_seat2;
+m_seat3         = x_seat3_cg*w_seat3; 
 
 %%% Sum Moments
 
-sum_m           =m_js+m_cp+m_seat1+m_seat2+m_seat3+m_lg+m_fusel+m_tail+m_nac+m_engs+m_wingfuel+m_centfuel+m_wing+m_sc;
+sum_m           = m_js+m_cp+m_seat1+m_seat2+m_seat3+m_lg+m_fusel+m_tail+m_nac+m_engs+m_wingfuel+m_centfuel+m_wing+m_sc;
 
 %%% Sum Weights
 
-sum_w           =w_seat1+w_seat2+w_seat3+w_pilots+w_js_total+w_fuel+w_engs+w_wing+w_tail+w_fusel+w_sc+w_nac+w_lg;
+sum_w           = w_seat1+w_seat2+w_seat3+w_pilots+w_js_total+w_fuel+w_engs+w_wing+w_tail+w_fusel+w_sc+w_nac+w_lg;
 
 %%% CG Calculation
 
-CG              =sum_m/sum_w;
+CG              = sum_m/sum_w;
 
 %%% Percent MAC Calculation
 
-Percent_MAC     =(CG-x_MAC)/MAC;
+Percent_MAC     = (CG-x_MAC)/MAC;
