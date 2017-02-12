@@ -30,23 +30,23 @@ L_seat1         = 10;                               % length of seating section 
 L_seat2         = 10;                               % length of seating section 2 (4 people)
 L_seat3         = 10;                               % length of seating section 3 (4 people)
 
-x_wing          = 0.33*PL;                          % wing LE placement
-x_eng           = 0.63*PL;                          % engine LE placement
+x_wing          = 0.43*PL;                          % wing LE placement
+x_eng           = 0.65*PL;                          % engine LE placement
 x_nac           = x_eng;                            % nacelle LE placement
-x_lg_front      = .08*PL;                           % front landing gear placement
-x_lg_rear       = .51*PL;                           % rear landing gear placement
+x_lg_front      = .04*PL;                           % front landing gear placement
+x_lg_rear       = .45*PL;                           % rear landing gear placement
 x_fusel         = L_nose;                           % fuselage LE placement                               
 x_emp           = L_nose+L_fusel;                   % tail empennage LE placement
 x_t_vert        = 0.90*PL;                          % vertical tail surface LE placement
 x_t_horiz       = x_t_vert;                         % horizontal tail surface LE placement
-x_seat_cp       = .05*PL;                           % placement of cockpit seating CG (2 pilots)
-x_seat_js       = .146*PL;                          % placement of jump seat CG (1 steward(ess))
+x_seat_cp       = .1*PL;                           % placement of cockpit seating CG (2 pilots)
+x_seat_js       = .2*PL;                          % placement of jump seat CG (1 steward(ess))
                                                     % cockpit seating should go around the end of the nose-
                                                     % fuselage just counts cabin in this code so you can put
                                                     % cockpit forward of that; jump seat can go in cabin or cockpit
-x_seat1         = 0.2*PL;                           % placement of seating section 1 LE (4 people)
-x_seat2         = 0.33*PL;                          % placement of seating section 2 LE (4 people)
-x_seat3         = 0.44*PL;                          % placement of seating section 3 LE (4 people)
+x_seat1         = 0.1*PL;                           % placement of seating section 1 LE (4 people)
+x_seat2         = 0.2*PL;                          % placement of seating section 2 LE (4 people)
+x_seat3         = 0.3*PL;                          % placement of seating section 3 LE (4 people)
                                                     % seating sections 1-3 are each approx
                                                     % 10 ft long- section 1 CG must be at least 5ft into the
                                                     % fuselage and section 3 must be at
@@ -160,8 +160,15 @@ sum_w           = w_seat1+w_seat2+w_seat3+w_pilots+w_js_total+w_fuel+w_engs+w_wi
 
 %%% CG Calculation
 
-CG              = sum_m/sum_w;
+CG              = sum_m./sum_w;
 
 %%% Percent MAC Calculation
 
-Percent_MAC     = (CG-x_MAC)/MAC;
+Percent_MAC     = (CG-x_MAC)./MAC;
+disp(CG);
+
+% 
+% plot(x_wing,Percent_MAC);
+% xlabel('Wing Placement','FontSize',15)
+% ylabel('Percent MAC','FontSize',15)
+% title('Wing Placement vs. Percent MAC','FontSize',18)
