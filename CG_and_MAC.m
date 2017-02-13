@@ -20,7 +20,7 @@ close all; clear all; clc;
 MTOW            = 118000;                           % Max Take-Off Weight [lb]
 PL              = 90;                               % Plane Length [ft]
 WL              = 90;                               % Wing Loading [lb/ft^2]
-w_fuel          = 70862;                            % total fuel weight
+w_fuel          = 74685.959;                            % total fuel weight
                                                     % Using Max Available fuel weight
                                                     % here: This is not the total
                                                     % weight required for range calcs. 
@@ -31,7 +31,7 @@ w_fuel          = 70862;                            % total fuel weight
 L_nose          = 17.93;                            % length of nose
 L_fusel         = 42.17;                            % length of fuselage
 L_emp           = 29.9;                             % length of tail empennage
-L_t_vert_root   = 2.18;                             % length of vertical tail surface root chord
+L_t_vert_root   = 2.567;                             % length of vertical tail surface root chord
 L_t_horiz_root  = L_t_vert_root;                    % length of horizontal tail surface root chord
 L_eng           = 13;                               % length of engine
 L_nac           = 14;                               % length of nacelle
@@ -54,8 +54,8 @@ x_seat_js       = .2*PL;                          % placement of jump seat CG (1
                                                     % fuselage just counts cabin in this code so you can put
                                                     % cockpit forward of that; jump seat can go in cabin or cockpit
 x_seat1         = 0.3*PL;                           % placement of seating section 1 LE (4 people)
-x_seat2         = 0.4*PL;                          % placement of seating section 2 LE (4 people)
-x_seat3         = 0.5*PL;                          % placement of seating section 3 LE (4 people)
+x_seat2         = 0.41*PL;                          % placement of seating section 2 LE (4 people)
+x_seat3         = 0.52*PL;                          % placement of seating section 3 LE (4 people)
                                                     % seating sections 1-3 are each approx
                                                     % 10 ft long- section 1 CG must be at least 5ft into the
                                                     % fuselage and section 3 must be at
@@ -115,6 +115,7 @@ m_wingfuel      = x_wingfuel_cg*w_wingfuel;
 x_eng_cg        = x_eng+(L_eng/2);
 
 m_engs          = x_eng_cg*w_engs;
+
 
 %%% Nacelle Group Parameters
 
