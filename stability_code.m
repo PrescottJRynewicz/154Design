@@ -53,7 +53,7 @@ n_t             = 1;                        %tail efficiency
 l_w             = 3.65;                     %distance from wing to CG : From CG Calcs. 
 l_t             = l_t;             
 l               = l_w + l_t;                %distance from wing to tail
-n               = 1;                        %number of nacelle
+n               = 2;                        %number of nacelle
 
 %Calculate aerodynamic constants
 A               = b^2/S_w;                          %Aspect ratio
@@ -65,7 +65,7 @@ M_f             = 2*q*(k2_f-k1_f)*Vol_f*alpha_w;    %Moment of fuselage
 M_n             = 2*q*(k2_n-k1_n)*Vol_n*alpha_w;    %Moment of nacelle
 
 %Total moment coefficient
-CM_cg           = CL_w*(l_w/c_w) + CM_ac - CL_t*n_t*Vh + (M_f + 2*M_n)/(q*S_w*c_w);
+CM_cg           = (CL_w + CL_t*n_t*S_t/S_w)*(l_w/c_w) + CM_ac - CL_t*n_t*S_t/S_w*l/c_w + (M_f + n*M_n)/(q*S_w*c_w);
 
 %Differential of CM_cg with respect to alpha
 CM_alpha        = (a_w + a_t.*(1 - dev_epsilon).*n_t.*(S_t./S_w)).*(l_w./c_w) - ...
