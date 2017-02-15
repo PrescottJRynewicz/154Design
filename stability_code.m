@@ -68,7 +68,9 @@ M_n             = 2*q*(k2_n-k1_n)*Vol_n*alpha_w;    %Moment of nacelle
 CM_cg           = CL_w*(l_w/c_w) + CM_ac - CL_t*n_t*Vh + (M_f + 2*M_n)/(q*S_w*c_w);
 
 %Differential of CM_cg with respect to alpha
-CM_alpha        = (a_w + a_t.*(1 - dev_epsilon).*n_t.*(S_t./S_w)).*(l_w./c_w) - a_t.*(1-dev_epsilon).*n_t.*Vh + 2.*(k2_f - k1_f).*(Vol_f./(c_w.*S_w)) + 2.*n.*(k2_n - k1_n).*(Vol_n./(c_w.*S_w));
+CM_alpha        = (a_w + a_t.*(1 - dev_epsilon).*n_t.*(S_t./S_w)).*(l_w./c_w) - ...
+    a_t.*(1-dev_epsilon).*n_t.*Vh + 2.*(k2_f - k1_f).*(Vol_f./(c_w.*S_w)) + ...
+    2.*n.*(k2_n - k1_n).*(Vol_n./(c_w.*S_w));
 
 %Plotting the CM_cg and dev_CM_cg(CM_alpha)
 figure (1);     %Plot CM_cg
