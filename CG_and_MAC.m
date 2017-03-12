@@ -17,10 +17,10 @@ close all; clear all; clc;
 
 %%% Overall Aircraft Parameters 
 
-MTOW            = 118000;                           % Max Take-Off Weight [lb]
+MTOW            = 100000;                           % Max Take-Off Weight [lb]
 PL              = 90;                               % Plane Length [ft]
 WL              = 90;                               % Wing Loading [lb/ft^2]
-w_fuel          = 74685.959;                            % total fuel weight
+w_fuel          = 75000.959;                            % total fuel weight
                                                     % Using Max Available fuel weight
                                                     % here: This is not the total
                                                     % weight required for range calcs. 

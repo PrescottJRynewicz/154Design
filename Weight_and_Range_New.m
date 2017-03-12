@@ -2,7 +2,7 @@
 
 %% Define Maximum Gross Takeoff Weight
 
-MTOW = 118000;
+MTOW = 70000;
 
 %% Calculate Group Weights
 
@@ -43,7 +43,7 @@ a = 573.3502;                                               % [nmi/hr] speed of 
 M = 1.6;                                                    % [unitless] Mach number
 V = M*a;                                                    % [nmi/hr] aircraft cruise speed
 Range = 4500;                                               % [nmi] specified range
-Ctsfc = 0.8766;                                             % [1/hr] thrust specific fuel consumption based off of BJ205 at 45000 ft and Mach 1.6
+Ctsfc = 0.6675;                                             % [1/hr] thrust specific fuel consumption based off of BJ205 at 45000 ft and Mach 1.6
 
 %% Load Condition 1 - Max Payload & Max Fuel
 
@@ -77,7 +77,7 @@ R = 4500;                                                   % [nmi] range
 a0 = 661.47;                                                % [nmi/hr] speed of sound @ sea level
 M = 1.6;                                                    % [unitless] mach number
 L_D = 4.289;                                                % [unitless] lift to drag ratio
-Ctsfc = 0.8766;                                             % [1/hr] thrust specific fuel consumption
+Ctsfc = 0.6675;                                             % [1/hr] thrust specific fuel consumption
 Ta = 216.65;                                                % [K] ambient temp @ cruising altitude
 T0 = 288.15;                                                % [K] std atmospheric temp
 
